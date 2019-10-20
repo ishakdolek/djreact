@@ -1,0 +1,2 @@
+# djreact
+Django and React
