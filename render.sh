@@ -75,9 +75,11 @@ declare -a arr=(
 for i in "${arr[@]}"
 do
    echo "$i"
-   echo ${$i// /_}
-   text2image --text ~/tessscractch/langdata/ara/ara.training_text --outputbase ara.${i// /_}.exp001  --strip_unrenderable_words --leading=32 --xsize=3600 --char_spacing=0.0 --exposure=0  --max_pages=0  --fonts_dir /home/yonetici/.local/share/fonts  --font  "$i"
-   tesseract ara.${i// /_}.exp001.tif ara.${i// /_}.exp001 --psm 6 lstm.train
+   MY_FILE="$i"
+   MY_FILE = ${MY_FILE// /_}
+   echo "$MY_FILE"
+   text2image --text ~/tessscractch/langdata/ara/ara.training_text --outputbase ara.$MY_FILE.exp001  --strip_unrenderable_words --leading=32 --xsize=3600 --char_spacing=0.0 --exposure=0  --max_pages=0  --fonts_dir /home/yonetici/.local/share/fonts  --font  "$i"
+   tesseract ara.$MY_FILE.exp001.tif ara.$MY_FILE.exp001 --psm 6 lstm.train
    # or do whatever with individual element of the array
 done
 
